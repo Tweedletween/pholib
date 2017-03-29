@@ -7,13 +7,13 @@ import java.time.LocalDate;
  */
 public class Pho {
     private String name;
-    private LocalDate dataUploaded;
+    private LocalDate dateUploaded;
     private String username;
     private boolean favorite;
 
     public Pho(String name, LocalDate dataUploaded, String username, boolean favorite) {
         this.name = name;
-        this.dataUploaded = dataUploaded;
+        this.dateUploaded = dataUploaded;
         this.username = username;
         this.favorite = favorite;
     }
@@ -22,8 +22,8 @@ public class Pho {
         return name;
     }
 
-    public LocalDate getDataUploaded() {
-        return dataUploaded;
+    public LocalDate getDateUploaded() {
+        return dateUploaded;
     }
 
     public String getUsername() {
