@@ -27,4 +27,8 @@ public class PhoRepository {
         }
         return null;
     }
+
+    public List<Pho> getAllPhos() {
+        return ALL_PHOS;
+    }
 }

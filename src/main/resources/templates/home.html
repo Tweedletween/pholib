@@ -45,22 +45,10 @@
     </div>
     <div class="phos container">
         <div class="row">
-            <div class="col s12 l4">
-                <a>
-                    <img th:src="@{/phos/compiler-bot.gif}" />
-                    <a href="#" class="mark favorite"></a>
-                </a>
-            </div>
-            <div class="col s12 l4">
-                <a>
-                    <img th:src="@{/phos/compiler-bot.gif}" />
-                    <a href="#" class="mark favorite"></a>
-                </a>
-            </div>
-            <div class="col s12 l4">
-                <a>
-                    <img th:src="@{/phos/compiler-bot.gif}" />
-                    <a href="#" class="mark favorite"></a>
+            <div th:each="pho : ${phos}" class="col s12 l4">
+                <a th:href="@{'pho/' + ${pho.name}}">
+                    <img th:src="@{'/phos/' + ${pho.name} + '.gif'}" />
+                    <a href="#" th:class="(${pho.favorite} ? 'un' : '') + 'mark favorite'"></a>
                 </a>
             </div>
         </div>

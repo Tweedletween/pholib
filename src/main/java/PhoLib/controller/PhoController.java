@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Created by melina on 3/27/17.
@@ -19,7 +20,9 @@ public class PhoController {
     private PhoRepository phoRepository;
 
     @RequestMapping("/")
-    public String listPhos() {
+    public String listPhos(ModelMap modelMap) {
+        List<Pho> allPhos = phoRepository.getAllPhos();
+        modelMap.put("phos", allPhos);
         return "home";
     }
 
