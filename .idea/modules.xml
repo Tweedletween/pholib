@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/pholib.iml" filepath="$PROJECT_DIR$/.idea/modules/pholib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/pholib_main.iml" filepath="$PROJECT_DIR$/.idea/modules/pholib_main.iml" group="pholib" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/pholib_test.iml" filepath="$PROJECT_DIR$/.idea/modules/pholib_test.iml" group="pholib" />
+    </modules>
+  </component>
+</project>
