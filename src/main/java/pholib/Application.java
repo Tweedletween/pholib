@@ -1,4 +1,4 @@
-package PhoLib;
+package pholib;
 
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -9,8 +9,8 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @EnableAutoConfiguration
 @ComponentScan
-public class AppConfig {
+public class Application {
     public static void main(String[] args) {
-        SpringApplication.run(AppConfig.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }
