@@ -13,7 +13,7 @@ import java.util.List;
  * Created by melina on 3/31/17.
  */
 @Repository
-public class CategoryImpl implements CategoryDao{
+public class CategoryDaoImpl implements CategoryDao{
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -34,7 +34,11 @@ public class CategoryImpl implements CategoryDao{
 
     @Override
     public void save(Category category) {
-
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.save(category);
+        session.getTransaction().commit();
+        session.close();
     }
 
     @Override
