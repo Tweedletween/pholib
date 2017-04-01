@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pholib.service.CategoryService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,15 +21,12 @@ import java.util.List;
 @Controller
 public class CategoryController {
     @Autowired
-    private SessionFactory sessionFactory;
+    private CategoryService categoryService;
 
     @SuppressWarnings("unchecked")
     @RequestMapping("/categories")
     public String listCategories(Model model) {
-        // TODO: Get all categories
-        Session session = sessionFactory.openSession();
-
-        List<Category> categories = session.createCriteria(Category.class).list();
+        List<Category> categories = categoryService.findAll();
 
         model.addAttribute("categories",categories);
         return "category/index";
