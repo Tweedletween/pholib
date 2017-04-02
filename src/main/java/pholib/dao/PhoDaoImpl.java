@@ -36,7 +36,7 @@ public class PhoDaoImpl implements PhoDao {
     public void save(Pho pho) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(pho);
+        session.saveOrUpdate(pho);
         session.getTransaction().commit();
         session.close();
     }

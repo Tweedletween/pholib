@@ -29,14 +29,17 @@ public class CategoryDaoImpl implements CategoryDao{
 
     @Override
     public Category findById(Long id) {
-        return null;
+        Session session = sessionFactory.openSession();
+        Category category = session.get(Category.class, id);
+        session.close();
+        return category;
     }
 
     @Override
     public void save(Category category) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(category);
+        session.saveOrUpdate(category);
         session.getTransaction().commit();
         session.close();
     }

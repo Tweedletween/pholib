@@ -59,6 +59,7 @@ public class PhoController {
     public String formNewPho(Model model) {
 
         model.addAttribute("pho", new Pho());
+        model.addAttribute("action","/phos");
         model.addAttribute("categories", categoryService.findAll());
 
         return "pho/form";
