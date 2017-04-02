@@ -98,4 +98,14 @@ public class PhoController {
 
         return "redirect:/";
     }
+
+    @RequestMapping(value = "/phos/{phoId}/delete", method = RequestMethod.POST)
+    public String deleteCategory(@PathVariable Long phoId, RedirectAttributes redirectAttributes) {
+        Pho pho = phoService.findById(phoId);
+
+        phoService.delete(pho);
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Pho deleted", FlashMessage.Status.SUCCESS));
+
+        return "redirect:/";
+    }
 }

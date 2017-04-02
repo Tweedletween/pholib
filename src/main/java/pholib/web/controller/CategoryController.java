@@ -38,6 +38,15 @@ public class CategoryController {
         return "category/index";
     }
 
+    // Single category page
+    @RequestMapping("/categories/{categoryId}")
+    public String category(@PathVariable Long categoryId, Model model) {
+        Category category = categoryService.findById(categoryId);
+
+        model.addAttribute("category", category);
+        return "category/details";
+    }
+
     // Form for adding a new category
     @RequestMapping("categories/add")
     public String formNewCategory(Model model) {
