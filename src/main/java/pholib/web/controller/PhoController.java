@@ -83,6 +83,7 @@ public class PhoController {
     @RequestMapping(value = "/phos", method = RequestMethod.POST)
     public String addPho(Pho pho, @RequestParam MultipartFile file, RedirectAttributes redirectAttributes) {
         phoService.save(pho, file);
+
         redirectAttributes.addFlashAttribute("flash", new FlashMessage("Photo successfuly uploaded", FlashMessage.Status.SUCCESS));
 
         return String.format("redirect:/phos/%s", pho.getId());

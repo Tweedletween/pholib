@@ -84,7 +84,7 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "/categories/{categoryId}", method = RequestMethod.POST)
-    public String EditCategory(@Valid Category category, BindingResult result, RedirectAttributes redirectAttributes) {
+    public String editCategory(@Valid Category category, BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             // Flash message
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.category", result);
@@ -96,6 +96,21 @@ public class CategoryController {
             categoryService.save(category);
 
         redirectAttributes.addFlashAttribute("flash", new FlashMessage("Category successfully updated!", FlashMessage.Status.SUCCESS));
+
+        return "redirect:/categories";
+    }
+
+    @RequestMapping(value = "/categories/{categoryId}/delete", method = RequestMethod.POST)
+    public String deleteCategory(@PathVariable Long categoryId, RedirectAttributes redirectAttributes) {
+        Category cat = categoryService.findById(categoryId);
+
+        if (cat.getPhos().size() > 0) {
+            redirectAttributes.addFlashAttribute("flash", new FlashMessage("Only empty categories can be deleted", FlashMessage.Status.FAILURE));
+            return String.format("redirect:/categories/%s/edit", categoryId);
+        }
+
+        categoryService.delete(cat);
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Category deleted", FlashMessage.Status.SUCCESS));
 
         return "redirect:/categories";
     }
