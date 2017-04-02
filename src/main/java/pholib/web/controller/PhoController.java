@@ -57,18 +57,44 @@ public class PhoController {
 
     @RequestMapping("/upload")
     public String formNewPho(Model model) {
-
         model.addAttribute("pho", new Pho());
         model.addAttribute("action","/phos");
         model.addAttribute("categories", categoryService.findAll());
+        model.addAttribute("heading","Add photo");
+        model.addAttribute("submit","Add");
 
         return "pho/form";
     }
 
+    @RequestMapping("/phos/{phoId}/edit")
+    public String formNewPho(@PathVariable Long phoId, Model model) {
+        if (!model.containsAttribute("pho")) {
+            model.addAttribute("pho", phoService.findById(phoId));
+        }
+        model.addAttribute("action",String.format("/phos/%s", phoId));
+        model.addAttribute("categories", categoryService.findAll());
+        model.addAttribute("heading","Edit photo");
+        model.addAttribute("submit","Update");
+
+        return "pho/form";
+    }
+
+    // Add a new photo
     @RequestMapping(value = "/phos", method = RequestMethod.POST)
     public String addPho(Pho pho, @RequestParam MultipartFile file, RedirectAttributes redirectAttributes) {
         phoService.save(pho, file);
-        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Pho successfuly uploaded", FlashMessage.Status.SUCCESS));
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Photo successfuly uploaded", FlashMessage.Status.SUCCESS));
+
         return String.format("redirect:/phos/%s", pho.getId());
+    }
+
+    // Update an exsiting photo
+    @RequestMapping(value = "/phos/{phoId}", method = RequestMethod.POST)
+    public String editPho(Pho pho, @RequestParam MultipartFile file, RedirectAttributes redirectAttributes) {
+
+        phoService.save(pho, file);
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Photo successfuly updated", FlashMessage.Status.SUCCESS));
+
+        return "redirect:/";
     }
 }
