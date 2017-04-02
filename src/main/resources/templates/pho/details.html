@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: head(${pho.description})"></head>
 <body>
 <div th:replace="layout :: nav"></div>
@@ -18,8 +18,8 @@
         <div class="col s10 l11 push-l1">
             <h4 th:text="${pho.description}"></h4>
             <div>
-                <span class="user" th:text="|${pho.timeSinceUploaded} ago by ${pho.username}|"></span>
-                <span class="category"><a th:href="@{|/categories/${pho.category.id}|}" th:text="${pho.category.name}" th:style="|color:${gif.category.colorCode}|"></a></span>
+                <!--span class="user" th:text="|${pho.timeSinceUploaded} ago by ${pho.username}|"></span-->
+                <span class="category"><a th:href="@{|/categories/${pho.category.id}|}" th:text="${pho.category.name}" th:style="|color:${pho.category.colorCode}|"></a></span>
                 <div class="actions">
                     <a th:href="@{|/phos/${pho.id}/edit|}">Edit</a>
                     <form th:action="@{|/phos/${pho.id}/delete|}" method="post">
