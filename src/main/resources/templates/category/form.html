@@ -6,7 +6,7 @@
 <div th:replace="layout :: flash"></div>
 <div class="container">
     <!-- the object category will be added to ModelMap -->
-    <form th:action="@{/action}" method="post" th:object="${category}">
+    <form th:action="@{/categories}" method="post" th:object="${category}">
         <input type="hidden" th:field="*{id}"/>
         <div class="row">
             <div class="col s12">

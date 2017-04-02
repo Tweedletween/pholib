@@ -3,7 +3,9 @@ package pholib.web.controller;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pholib.model.Category;
 import pholib.model.Pho;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pholib.service.CategoryService;
 import pholib.web.Color;
+import pholib.web.FlashMessage;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,8 +55,19 @@ public class CategoryController {
 
 
     @RequestMapping(value = "/categories", method = RequestMethod.POST)
-    public String addCategory(Category category) {
+    public String addCategory(@Valid Category category, BindingResult result, RedirectAttributes redirectAttributes) {
+        if (result.hasErrors()) {
+            // Flash message
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.category", result);
+            // Save the typed data
+            redirectAttributes.addFlashAttribute("category", category);
+            // Redirect back to the form
+            return "redirect:/categories/add";
+        } else
         categoryService.save(category);
+
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Category successfully added!", FlashMessage.Status.SUCCESS));
+
         return "redirect:/categories";
     }
 }
