@@ -1,5 +1,6 @@
 package pholib.web.controller;
 
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -99,8 +100,17 @@ public class PhoController {
         return "redirect:/";
     }
 
+    @RequestMapping(value = "/phos/{phoId}/favorite", method = RequestMethod.POST)
+    public String deleteCategory(@PathVariable Long phoId, HttpServletRequest request) {
+        Pho pho = phoService.findById(phoId);
+
+        phoService.toggleFavorite(pho);
+
+        return String.format("redirect:%s", request.getHeader("referer"));
+    }
+
     @RequestMapping(value = "/phos/{phoId}/delete", method = RequestMethod.POST)
-    public String deleteCategory(@PathVariable Long phoId, RedirectAttributes redirectAttributes) {
+    public String deletePho(@PathVariable Long phoId, RedirectAttributes redirectAttributes) {
         Pho pho = phoService.findById(phoId);
 
         phoService.delete(pho);

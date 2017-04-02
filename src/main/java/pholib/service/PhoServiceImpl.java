@@ -42,4 +42,10 @@ public class PhoServiceImpl implements PhoService {
     public void delete(Pho pho) {
         phoDao.delete(pho);
     }
+
+    @Override
+    public void toggleFavorite(Pho pho) {
+        pho.setFavorite(!pho.isFavorite());
+        phoDao.save(pho);
+    }
 }
