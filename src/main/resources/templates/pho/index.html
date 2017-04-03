@@ -5,11 +5,11 @@
 <div th:replace="layout :: nav"></div>
 <div th:replace="layout :: searchbar"></div>
 <div th:replace="layout :: flash"></div>
-<div class="gifs container">
+<div class="phos container">
     <div class="row">
         <div th:each="pho : ${phos}" class="col s12 l4">
             <a th:href="@{|/phos/${pho.id}|}" class="actions">
-                <img th:src="@{|/phos/${pho.id}.gif|}" alt="gif" />
+                <img th:src="@{|/phos/${pho.id}.gif|}" alt="pho" />
                 <form th:action="@{|/phos/${pho.id}/favorite|}" method="post">
                     <button type="submit" th:class="(${pho.favorite}? 'un' : '') + 'mark favorite'"></button>
                 </form>
