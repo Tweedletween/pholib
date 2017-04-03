@@ -2,6 +2,7 @@ package pholib.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pholib.model.Pho;
@@ -48,5 +49,14 @@ public class PhoDaoImpl implements PhoDao {
         session.delete(pho);
         session.getTransaction().commit();
         session.close();
+    }
+
+    @Override
+    public List<Pho> findFav() {
+        Session session = sessionFactory.openSession();
+        //List<Pho> phos = session.createCriteria(Pho.class).list();
+        List<Pho> phos = session.createCriteria(Pho.class).add(Restrictions.eq("favorite", true)).list();
+        session.close();
+        return phos;
     }
 }

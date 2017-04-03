@@ -12,4 +12,5 @@ public interface PhoDao {
     Pho findById(Long id);
     void save(Pho pho);
     void delete(Pho pho);
+    List<Pho> findFav();
 }

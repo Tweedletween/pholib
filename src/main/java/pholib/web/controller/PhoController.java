@@ -50,7 +50,7 @@ public class PhoController {
 
     @RequestMapping("/favorites")
     public String favorites(Model model){
-        List<Pho> favs = new ArrayList<>();
+        List<Pho> favs = phoService.findFav();
         model.addAttribute("phos", favs);
         model.addAttribute("username", "Melina");
         return "pho/favorites";

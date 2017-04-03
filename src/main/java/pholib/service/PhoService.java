@@ -14,4 +14,5 @@ public interface PhoService {
     void save(Pho pho, MultipartFile file);
     void delete(Pho pho);
     void toggleFavorite(Pho pho);
+    List<Pho> findFav();
 }

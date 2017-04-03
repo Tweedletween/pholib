@@ -48,4 +48,9 @@ public class PhoServiceImpl implements PhoService {
         pho.setFavorite(!pho.isFavorite());
         phoDao.save(pho);
     }
+
+    @Override
+    public List<Pho> findFav() {
+        return phoDao.findFav();
+    }
 }
