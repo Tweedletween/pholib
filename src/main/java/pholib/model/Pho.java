@@ -18,6 +18,7 @@ public class Pho {
     private String description;
 
     @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
     private LocalDateTime dateUploaded = LocalDateTime.now();
 

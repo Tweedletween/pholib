@@ -29,6 +29,10 @@ public class User implements UserDetails{
     @Column(nullable = true)
     private boolean enabled;
 
+    public Long getId() {
+        return id;
+    }
+
     @OneToOne
     @JoinColumn(name = "role_id")
     private Role role;

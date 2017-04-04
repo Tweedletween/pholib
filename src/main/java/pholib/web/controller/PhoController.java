@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import pholib.model.User;
 import pholib.service.CategoryService;
+import pholib.service.FavService;
 import pholib.service.PhoService;
 import pholib.web.FlashMessage;
 
@@ -29,6 +30,9 @@ public class PhoController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private FavService favService;
 
     @RequestMapping("/")
     public String listPhos(Model model) {
@@ -55,7 +59,7 @@ public class PhoController {
     public String favorites(Model model, Principal principal){
         User user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
 
-        List<Pho> favs = phoService.findFav();
+        List<Pho> favs = favService.findFav(user);
         model.addAttribute("phos", favs);
         model.addAttribute("username", user.getUsername());
 
@@ -107,10 +111,11 @@ public class PhoController {
     }
 
     @RequestMapping(value = "/phos/{phoId}/favorite", method = RequestMethod.POST)
-    public String deleteCategory(@PathVariable Long phoId, HttpServletRequest request) {
+    public String toggleFavorite(@PathVariable Long phoId, Principal principal, HttpServletRequest request) {
         Pho pho = phoService.findById(phoId);
+        User user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
 
-        phoService.toggleFavorite(pho);
+        favService.toggleFavorite(pho, user);
 
         return String.format("redirect:%s", request.getHeader("referer"));
     }
