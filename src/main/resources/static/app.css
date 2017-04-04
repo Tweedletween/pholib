@@ -605,6 +605,10 @@ label.button {
         width: 100%;
     }
 
+    login.container {
+            width: 30%;
+        }
+
     .phos.container {
         padding: 0;
         margin-top: 1.1rem;

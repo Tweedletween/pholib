@@ -7,7 +7,7 @@
 <div th:replace="layout :: flash"></div>
 <div class="row user-meta">
     <div class="col s3 l12">
-        <img class="circle" th:src="@{/images/me.jpg}" alt="avatar" />
+        <img class="circle" th:src="@{/icons/profile.png}" alt="avatar" />
     </div>
     <div class="col s9= l12">
         <h2 th:text="${username}">Jane Doe</h2>
@@ -18,9 +18,11 @@
     <div class="divider"></div>
     <div class="row">
         <div th:each="pho : ${phos}" class="col s12 l4">
-            <a th:href="@{|/phos/${pho.id}|}">
+            <a th:href="@{|/phos/${pho.id}|}" class="actions">
                 <img th:src="@{|/phos/${pho.id}.gif|}" />
-                <a href="#" th:class="(${pho.favorite}? 'un' : '') + 'mark favorite'"></a>
+                <form th:action="@{|/phos/${pho.id}/favorite|}" method="post">
+                    <button type="submit" th:class="(${pho.favorite}? 'un' : '') + 'mark favorite'"></button>
+                </form>
             </a>
         </div>
     </div>

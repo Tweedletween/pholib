@@ -27,5 +27,9 @@ dependencies {
     compile 'org.springframework:spring-orm:4.3.7.RELEASE'
     compile 'org.hibernate:hibernate-core:5.1.0.Final'
     compile 'com.h2database:h2:1.4.194'
+
+    compile 'org.springframework.boot:spring-boot-starter-security'
+    compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4:2.1.2.RELEASE'
+
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
