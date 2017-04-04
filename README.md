@@ -14,6 +14,11 @@ This is a Java Spring MVC web application. It uses Spring framework, and manages
 ### How to run this app:
 1. Download this project;
 2. Set up a database service:
-'java -cp h2-1.4.194.jar org.h2.tools.Server'
-3. Try on the browser:
-'localhost:8080'
+```
+java -cp h2-1.4.194.jar org.h2.tools.Server
+```
+3. Compile and run this project
+4. Try on the browser:
+```
+localhost:8080
+```
