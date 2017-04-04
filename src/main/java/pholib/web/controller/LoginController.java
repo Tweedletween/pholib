@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 public class LoginController {
-    @RequestMapping(path = "/login", method = RequestMethod.GET)
+    @RequestMapping("/login")
     public String loginForm(Model model, HttpServletRequest request) {
         model.addAttribute("user", new User());
         try {

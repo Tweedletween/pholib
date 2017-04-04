@@ -26,10 +26,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userService);
     }
 
-    /*@Override
+    @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/**");
-    }*/
+        web.ignoring().antMatchers("/icons/**")
+                        .antMatchers("/phos/**")
+                        .antMatchers("/vendor/**")
+                        .antMatchers("/app.css")
+                        .antMatchers("/app.js")
+                        .antMatchers("/favicon.png");
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
