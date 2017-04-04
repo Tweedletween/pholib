@@ -593,6 +593,15 @@ label.button {
 }
 
 
+.logout button {
+    border: none;
+    background: transparent;
+}
+
+.inline {
+    display: inline-block;
+}
+
 @media only screen and (max-width: 993px) {
     nav .brand-logo {
         left: 0;

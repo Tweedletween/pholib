@@ -1,6 +1,7 @@
 package pholib.web.controller;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -9,10 +10,12 @@ import pholib.model.Pho;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import pholib.model.User;
 import pholib.service.CategoryService;
 import pholib.service.PhoService;
 import pholib.web.FlashMessage;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,10 +52,13 @@ public class PhoController {
     }
 
     @RequestMapping("/favorites")
-    public String favorites(Model model){
+    public String favorites(Model model, Principal principal){
+        User user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
+
         List<Pho> favs = phoService.findFav();
         model.addAttribute("phos", favs);
-        model.addAttribute("username", "Melina");
+        model.addAttribute("username", user.getUsername());
+
         return "pho/favorites";
     }
 

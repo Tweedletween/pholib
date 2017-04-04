@@ -28,12 +28,22 @@
                 <li th:classappend="${#httpServletRequest.servletPath.equals('/') ? 'active' : ''}"><a th:href="@{/}">Explore</a></li>
                 <li th:classappend="${#httpServletRequest.servletPath.equals('/categories') ? 'active' : ''}"><a th:href="@{/categories}">Categories</a></li>
                 <li th:classappend="${#httpServletRequest.servletPath.equals('/favorites') ? 'active' : ''}"><a th:href="@{/favorites}">Favorites</a></li>
+                <li th:classappend="${#httpServletRequest.servletPath.equals('/logout') ? 'active' : ''}">
+                    <form class="logout inline" th:action="@{/logout}" method="post">
+                        <button><i class="material-icons"><a>power_settings_new</a></i></button>
+                    </form>
+                </li>
             </ul>
             <ul id="mobile-nav" class="side-nav">
                 <li th:classappend="${#httpServletRequest.servletPath.equals('/upload') ? 'active' : ''}"><a th:href="@{/upload}">Upload</a></li>
                 <li th:classappend="${#httpServletRequest.servletPath.equals('/') ? 'active' : ''}"><a th:href="@{/}">Explore</a></li>
                 <li th:classappend="${#httpServletRequest.servletPath.equals('/categories') ? 'active' : ''}"><a th:href="@{/categories}">Categories</a></li>
                 <li th:classappend="${#httpServletRequest.servletPath.equals('/favorites') ? 'active' : ''}"><a th:href="@{/favorites}">Favorites</a></li>
+                <li th:classappend="${#httpServletRequest.servletPath.equals('/logout') ? 'active' : ''}">
+                    <form class="logout inline" th:action="@{/logout}" method="post">
+                        <button><i class="material-icons"><a>power_settings_new</a></i></button>
+                    </form>
+                </li>
             </ul>
         </div>
     </nav>
